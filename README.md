@@ -22,28 +22,28 @@ There are two possible ways to submit your project. Your instructor should have 
 
 #### Option B - Pull Request
 
-- [ ] Fork and clone the repository.
-- [ ] Implement your project in a `firstname-lastname` branch.
-- [ ] Create a pull request of `firstname-lastname` against your `main` branch.
+- [x] Fork and clone the repository.
+- [x] Implement your project in a `firstname-lastname` branch.
+- [x] Create a pull request of `firstname-lastname` against your `main` branch.
 - [ ] Open the assignment in Canvas and submit your pull request.
 
 ### Task 2: Minimum Viable Product
 
 Use Node.js and Express to build an API that performs CRUD operations on users.
 
-- Add a `server` script to the `package.json` that runs the API using `nodemon`.
+[x] Add a `server` script to the `package.json` that runs the API using `nodemon`.
 
 ### Write endpoints
 
 Add the code necessary in `index.js` and `api/server.js` to create a Web API and implement the following _endpoints_:
 
-| Method | URL            | Description                                                                                            |
-| ------ | -------------- | ------------------------------------------------------------------------------------------------------ |
-| POST   | /api/users     | Creates a user using the information sent inside the `request body`.                                   |
-| GET    | /api/users     | Returns an array users.                                                                                |
-| GET    | /api/users/:id | Returns the user object with the specified `id`.                                                       |
-| DELETE | /api/users/:id | Removes the user with the specified `id` and returns the deleted user.                                 |
-| PUT    | /api/users/:id | Updates the user with the specified `id` using data from the `request body`. Returns the modified user |
+| Method      | URL            | Description                                                                                            |
+| ----------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| POST ✅✅   | /api/users     | Creates a user using the information sent inside the `request body`.                                   |
+| GET ✅✅    | /api/users     | Returns an array users.                                                                                |
+| GET ✅✅    | /api/users/:id | Returns the user object with the specified `id`.                                                       |
+| DELETE ✅✅ | /api/users/:id | Removes the user with the specified `id` and returns the deleted user.                                 |
+| PUT ✅✅    | /api/users/:id | Updates the user with the specified `id` using data from the `request body`. Returns the modified user |
 
 #### User Schema
 
@@ -65,7 +65,7 @@ You can find them inside `api/users/model.js`. All of these functions return Pro
 - `findById` Takes an `id` and resolves to the user with that id (or null if the id does not exist).
 - `insert` Takes a new user `{ name, bio }` and resolves to the the newly created user `{ id, name, bio }`.
 - `update` Takes an `id` and an existing user `{ name, bio }` and resolves the updated user `{ id, name, bio}` (or null if the id does not exist).
-- `remove` Takes an `id`  and resolves to the deleted user `{ id, name, bio }`.
+- `remove` Takes an `id` and resolves to the deleted user `{ id, name, bio }`.
 
 #### Endpoint Specifications
 
