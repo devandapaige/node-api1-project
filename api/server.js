@@ -10,18 +10,24 @@ server.use(express.json());
 server.post("/api/users", async (req, res) => {
   const name = req.body.name;
   const bio = req.body.bio;
+  const newUser = await db.insert({
+    name: name,
+    bio: bio,
+  });
   //name & bio both needed to same user
   if (!name || !bio) {
     res.status(400).json({
       message: "Please provide both name and bio for the user",
     });
-  } else {
-    const newUser = await db.insert({
-      name: name,
-      bio: bio,
-    });
+  } else if (newUser) {
+    //if the newUser is able to be saved: 201 message:
     res.status(201).json(newUser);
     console.log(newUser);
+  } else {
+    //500 message for an error with saving the new user to the database:
+    res.status(500).json({
+      message: "There was an error while saving the user to the database",
+    });
   }
 });
 
@@ -61,10 +67,11 @@ server.delete("/api/users/:id", async (req, res) => {
   if (user) {
     await db.remove(user.id);
     res.status(204).end();
-  } else {
+  } else if (!user) {
     res
       .status(404)
       .json({ message: "The user with the specified ID does not exist" });
+  } else {
     res.status(500).json({ message: "The user could not be removed" });
   }
 });
@@ -85,10 +92,11 @@ server.put("/api/users/:id", async (req, res) => {
       bio: bio,
     });
     res.json(updateUser);
-  } else {
+  } else if (!user) {
     res
       .status(404)
       .json({ message: "The user with the specified ID does not exist" });
+  } else {
     res.status(500).json({
       message: "The user information could not be modified",
     });
